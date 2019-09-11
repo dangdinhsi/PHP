@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,74 +10,60 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
-			<div class="col-4 offset-4 text-center">
-				<?php
-				if(isset($_POST['btn-tong'])){
-						if($_POST['a']==null ||$_POST['b']==null){
-							echo "Nhập lại giá trị";
-						}else{
-
-							$tong =$_POST['a'] +$_POST['b'];
-							echo $tong;
-						}
-						
-				}
-				if(isset($_POST['btn-hieu'])){
-						if($_POST['a']==null ||$_POST['b']==null){
-							echo "Nhập lại giá trị";
-						}else{
-
-							$tong =$_POST['a'] -$_POST['b'];
-							echo $tong;
-						}
-						
-				}
-				if(isset($_POST['btn-tich'])){
-						if($_POST['a']==null ||$_POST['b']==null){
-							echo "Nhập lại giá trị";
-						}else{
-
-							$tong =$_POST['a'] *$_POST['b'];
-							echo $tong;
-						}
-						
-				}
-				if(isset($_POST['btn-thuong'])){
-						if($_POST['a']==null ||$_POST['b']==null){
-							echo "Nhập lại giá trị";
-						}elseif ($_POST['b']==0) {
-							echo "Khong the thuc hien phep chia cho 0";
-						}else{
-							
-							$tong =$_POST['a'] /$_POST['b'];
-							echo $tong;
-						
-						}
-						
-				}
-				?>
+			<div class="col-4 offset-4">
+				<?php 
+$so1=$so2=$tong=$hieu=$tich=$thuong='';
+if(!empty($_POST)){
+	if ($_POST['so1'] =='' || $_POST['so2']=='') {
+		echo "nhap lai gia tri";
+	}else{
+		$so1 =$_POST['so1'];
+		$so2 =$_POST['so2'];
+		if(!empty($_POST['cong'])){
+			$tong =$so1+$so2;
+			echo $tong;
+		}
+		if(!empty($_POST['tru'])){
+			$hieu =$so1-$so2;
+			echo $hieu;
+		}
+		if(!empty($_POST['nhan'])){
+			$tich =$so1*$so2;
+			echo $tich;
+		}
+		if(!empty($_POST['chia'])){
+			if($so2==0){
+				echo "khong the lam phep chia cho so 0";
+			}else{
+				$thuong =$so1/$so2;
+				echo $thuong;
+			}
+			
+		}
+	}
+}
+?>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-4 offset-4">
-				<form action="" method="POST">
-					<div class="form-group">	
-						<input type="text" class="form-control" id="" name="a" placeholder="Nhập giá trị a">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" id="" name="b" placeholder="Nhập giá trị b">
-					</div>
-					<div class="form-group">
-						<button type="submit" name="btn-tong" class="btn btn-info">Tổng</button>
-						<button type="submit" name="btn-hieu" class="btn btn-info">Hiệu</button>
-						<button type="submit" name="btn-tich" class="btn btn-info">Tích</button>
-						<button type="submit" name="btn-thuong" class="btn btn-info">Thương</button>
-					</div>
-				</form>
-			</div>
+			<form action="" method="POST">
+		<div class="form-group">
+			<input type="text" class="form-control" name="so1" id="" value="<?=$so1?>">
 		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" name="so2" id="" value="<?=$so2?>">
+		</div>
+		<input type="submit" name="cong" value="CONG">
+		<input type="submit" name="tru" value="TRU">
+		<input type="submit" name="nhan" value="NHAN">
+		<input type="submit" name="chia" value="CHIA">
+	</form>
+		</div>
+		</div>
+		
 	</div>
 </body>
 </html>
